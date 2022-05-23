@@ -12,13 +12,13 @@ const Constants = {
 	VK_SPACE: 32,
 	VK_A: 65,
 	VK_LEFT: 37,
-	VK_TOP: 38,
+	VK_UP: 38,
 	VK_RIGHT: 39,
-	VK_BOTTOM: 40,
+	VK_DOWN: 40,
 	ADDRESS: {
 		LEFT: 37,
-		TOP: 38,
+		UP: 38,
 		RIGHT: 39,
-		BOTTOM: 40
+		DOWN: 40
 	}
 };

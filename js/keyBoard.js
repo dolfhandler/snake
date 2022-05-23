@@ -2,9 +2,9 @@ let KeyBoard = function() {
 	this.amountKeys = Constants.AMOUNT_KEYS;
 	this.keys = new Array();
 	this.left = false;
-    this.top = false;
+    this.up = false;
     this.right = false;
-    this.bottom = false;
+    this.down = false;
     this.shoot = false;
 	
 	this.start = function() {
@@ -25,9 +25,9 @@ let KeyBoard = function() {
 	
 	this.update = function () {
         this.left = this.keys[Constants.VK_LEFT];
-        this.top = this.keys[Constants.VK_TOP];
+        this.up = this.keys[Constants.VK_UP];
         this.right = this.keys[Constants.VK_RIGHT];
-        this.bottom = this.keys[Constants.VK_BOTTOM];
+        this.down = this.keys[Constants.VK_DOWN];
         this.shoot = this.keys[Constants.VK_A];
     }
 }

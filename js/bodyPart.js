@@ -6,11 +6,11 @@ let BodyPart = function(x, y, isHead, canvas) {
 	this.speed = Constants.BODY_PART_SIZE;
 	this.isHead = isHead;
 	this.count = 0;
-	this.delay = 30;
+	this.delay = 25;
 	this.g = canvas.getContext();
 	this.color = Constants.BODY_PART_COLOR;
-	this.backupPosition = new Point(0, 0);
-	this.moved = false;
+	this.nextPosition = new Point(0, 0);
+	this.address = Constants.ADDRESS.RIGHT;
 	
 	this.draw = function() {
 		this.g.fillStyle = this.color;
@@ -22,26 +22,56 @@ let BodyPart = function(x, y, isHead, canvas) {
 	}
 	
 	this.move = function() {
-		if(keyboard.keys[Constants.ADDRESS.LEFT]) {
-			this.x -= this.speed;
-			this.address = Constants.ADDRESS.LEFT;
+		this.changeAddress();
+		this.advance();
+			this.followHead();
+	}
+	
+	this.changeAddress = function() {
+		if(this.isHead) {
+			if(this.address != Constants.ADDRESS.RIGHT && keyboard.left) {
+				this.address = Constants.ADDRESS.LEFT;
+			}
+			
+			if(this.address != Constants.ADDRESS.DOWN && keyboard.up) {
+				this.address = Constants.ADDRESS.UP;
+			}
+			
+			if(this.address != Constants.ADDRESS.LEFT && keyboard.right) {
+				this.address = Constants.ADDRESS.RIGHT;
+			}
+			
+			if(this.address != Constants.ADDRESS.UP && keyboard.down) {
+				this.address = Constants.ADDRESS.DOWN;
+			}
 		}
-		
-		if(keyboard.keys[Constants.ADDRESS.TOP]) {
-			this.y -= this.speed;
-			this.address = Constants.ADDRESS.TOP;
+	}
+	
+	this.advance = function() {
+		if(this.isHead) {
+			if(this.address == Constants.ADDRESS.LEFT) {
+				this.x -= this.speed;
+			}
+			
+			if(this.address == Constants.ADDRESS.UP) {
+				this.y -= this.speed;
+			}
+			
+			if(this.address == Constants.ADDRESS.RIGHT) {
+				this.x += this.speed;
+			}
+			
+			if(this.address == Constants.ADDRESS.DOWN) {
+				this.y += this.speed;
+			}
 		}
-		
-		if(keyboard.keys[Constants.ADDRESS.RIGHT]) {
-			this.x += this.speed;
-			this.address = Constants.ADDRESS.RIGHT;
+	}
+	
+	this.followHead = function() {
+		if(!this.isHead) {
+			console.log({a:this.getPosition(), b:this.nextPosition});
+			this.setPosition(this.nextPosition);
 		}
-		
-		if(keyboard.keys[Constants.ADDRESS.BOTTOM]) {
-			this.y += this.speed;
-			this.address = Constants.ADDRESS.BOTTOM;
-		}
-		this.isMoved();
 	}
 	
 	this.moveWithDelay = function() {
@@ -62,11 +92,9 @@ let BodyPart = function(x, y, isHead, canvas) {
 		this.y = y;
 	}
 	
-	this.isMoved = function() {
-		this.moved = keyboard.keys[Constants.ADDRESS.LEFT] 
-		|| keyboard.keys[Constants.ADDRESS.RIGHT]
-		|| keyboard.keys[Constants.ADDRESS.UP]
-		|| keyboard.keys[Constants.ADDRESS.DOWN];
+	this.setPosition = function(point) {
+		this.x = point.x;
+		this.y = point.y;
 	}
 	
 }
