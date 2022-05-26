@@ -1,9 +1,9 @@
 let BodyPart = function(x, y, isHead, canvas) {
 	this.x = x;
 	this.y = y;
-	this.width = Constants.BODY_PART_SIZE;
-	this.height = Constants.BODY_PART_SIZE;
-	this.speed = Constants.BODY_PART_SIZE;
+	this.width = Constants.TILE_SIZE;
+	this.height = Constants.TILE_SIZE;
+	this.speed = Constants.TILE_SIZE;
 	this.isHead = isHead;
 	this.count = 0;
 	this.delay = 25;
@@ -69,7 +69,6 @@ let BodyPart = function(x, y, isHead, canvas) {
 	
 	this.followHead = function() {
 		if(!this.isHead) {
-			console.log({a:this.getPosition(), b:this.nextPosition});
 			this.setPosition(this.nextPosition);
 		}
 	}
@@ -83,7 +82,7 @@ let BodyPart = function(x, y, isHead, canvas) {
 		}
 	}
 	
-	this.getPosition = function() {
+	this.getPoint = function() {
 		return new Point(this.x, this.y);
 	}
 	

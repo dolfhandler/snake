@@ -1,22 +1,22 @@
 let Snake = function(canvas) {
 	this.g = canvas;
 	this.body = new Array();
-	this.startPositionX = 10;
+	this.startPositionX = Constants.ZERO;
 	
 	this.start = function() {
-		for(let i = 0; i < 11; i++) {
+		for(let i = Constants.ZERO; i < Constants.INITAL_BODY_PART; i++) {
 			this.body.push(
 				new BodyPart(
-					this.startPositionX + (i * Constants.BODY_PART_SIZE),
-					10, false, this.g
+					this.startPositionX + (i * Constants.TILE_SIZE),
+					Constants.ZERO, false, this.g
 				)
 			);
 			
-			if(i > 0) {
+			if(i > Constants.ZERO) {
 				this.body[i - 1].nextPosition = new Point(this.body[i].x, this.body[i].y);
 			}
 		}
-		this.body[this.body.length -1].isHead = true;
+		this.body[this.body.length - 1].isHead = true;
 	}
 	
 	this.draw = function() {
@@ -33,8 +33,8 @@ let Snake = function(canvas) {
 	}
 	
 	this.updatePositions = function() {
-		for(let i = 0; i < this.body.length; i++) {
-			if(i > 0) {
+		for(let i = Constants.ZERO; i < this.body.length; i++) {
+			if(i > Constants.ZERO) {
 				this.body[i - 1].nextPosition = new Point(this.body[i].x, this.body[i].y);
 			}
 		}

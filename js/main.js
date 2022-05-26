@@ -1,5 +1,6 @@
 var g = new Canvas(document.querySelector('#canvas'));
 var snake = new Snake(g);
+var food = new Food(g);
 var keyboard = new KeyBoard();
 var flag = 0;
 /**
@@ -17,18 +18,21 @@ function update() {
 	startKeyEvent();
 	keyboard.update();
 	snake.update();
+	food.update();
 }
 
 function draw() {
 	g.clearCanvas();
 	snake.draw();
+	food.draw();
 }
 
 
 function startKeyEvent() {
 	if(flag == 0) {
-		snake.start();
 		keyboard.start();
+		snake.start();
+		food.start();
 		flag = 1;
 	}
 }
