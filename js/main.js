@@ -1,6 +1,6 @@
 var g = new Canvas(document.querySelector('#canvas'));
-var snake = new Snake(g);
 var food = new Food(g);
+var snake = new Snake(g);
 var keyboard = new KeyBoard();
 var flag = 0;
 /**

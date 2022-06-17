@@ -32,13 +32,17 @@ let Food = function(canvas) {
 			Math.floor((Math.random() * topY)) * this.height
 		);
 		
-		let snakeBody = snake.body.filter(part => 
-			part.x == this.point.x && part.y == this.point.y
-		);
-		if(snakeBody.length > Constants.ZERO) {
+		if(this.isInsideSnakeBody()) {
 			this.generate();
 		}
 		
+	}
+
+	this.isInsideSnakeBody = function() {
+		const snakeBody = snake.body.filter(part => 
+			part.x == this.point.x && part.y == this.point.y
+		);
+		return (snakeBody.length > Constants.ZERO);
 	}
 	
 	this.generateWithDelay = function() {
@@ -48,6 +52,10 @@ let Food = function(canvas) {
 			this.count = Constants.ZERO;
 			this.generate();
 		}
+	}
+
+	this.reGenerate = function() {
+		this.count = 601;
 	}
 	
 }

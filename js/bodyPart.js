@@ -6,7 +6,7 @@ let BodyPart = function(x, y, isHead, canvas) {
 	this.speed = Constants.TILE_SIZE;
 	this.isHead = isHead;
 	this.count = 0;
-	this.delay = 25;
+	this.delay = 10;
 	this.g = canvas.getContext();
 	this.color = Constants.BODY_PART_COLOR;
 	this.nextPosition = new Point(0, 0);
@@ -24,7 +24,7 @@ let BodyPart = function(x, y, isHead, canvas) {
 	this.move = function() {
 		this.changeAddress();
 		this.advance();
-			this.followHead();
+		this.followHead();
 	}
 	
 	this.changeAddress = function() {
