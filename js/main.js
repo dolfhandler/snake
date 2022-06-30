@@ -29,7 +29,7 @@ function draw() {
 
 
 function startKeyEvent() {
-	if(flag == 0) {
+	if (flag == 0) {
 		keyboard.start();
 		snake.start();
 		food.start();
